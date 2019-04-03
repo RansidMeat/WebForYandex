@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Forum</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a id="logo" href="/">BOARD</a>
+            <div id="menu">
+                {% if result.logged %}
+                <a class="menu-item" href="/settings">{{ result.userdata.login }}</a>
+                {% else %}
+                <a class="menu-item" href="/login">Sign in</a>
+                {% endif %}
+            </div>
+        </div>
+        <div id="content">

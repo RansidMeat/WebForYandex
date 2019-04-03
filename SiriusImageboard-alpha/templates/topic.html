@@ -1,0 +1,49 @@
+{% include 'header.html' %}
+<h1 id="topic-header">{{ result.data.info.title }}</h1>
+<div class="topic-info">
+    Author: {{ result.data.info.authorLogin }}<br>
+    Date: {{ result.data.info.creationTime }}<br>
+    Description: {{ result.data.info.description }}<br>
+    {% if result.logged %}
+    <button class="button" onclick="window.location.href='/like?id={{ result.data.info.id }}'">Like</button>
+    <button class="button" onclick="window.location.href='/dislike?id={{ result.data.info.id }}'">Dislike</button>
+    {% endif %}
+</div>
+{% if result.status != -1 %}
+<div id="reg-status">
+    {{ result.status }}
+</div>
+{% endif %}
+{% if result.logged %}
+<div id="topic-form">
+    <form method="post" enctype="multipart/form-data">
+        <textarea class="field" cols="20" rows="4" placeholder="Write a message" name="text"></textarea><br>
+        <div class="file-upload">
+            <label>
+                 <input type="file" name="file">
+                 <span>Choose file</span>
+            </label>
+        </div><br>
+        <input type="submit" class="button" value="Send" />
+    </form>
+</div>
+{% endif %}
+<p>{{ result.data.messages|length }} comments</p>
+<div id="topic-comments">
+    {% for message in result.data.messages %}
+        <div class="topic">
+            <div class="topic-block-detail blue-colored">{{ message.authorLogin }}</div>
+            <div class="topic-block-detail">{{ message.creationTime }}</div>
+            <div class="topic-comment-text">
+                {{ message.text }}<br>
+                {% if message.image == 1 %}
+                <div class="message-image">
+                    <img src="/static/img/{{ message.id }}.jpg"></img>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    
+</div>
+{% include 'footer.html' %}

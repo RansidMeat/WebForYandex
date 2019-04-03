@@ -1,0 +1,7 @@
+port: 80
+dbHost: 'localhost'
+dbUser: 'root'
+dbPassword: '12345'
+dbName: 'forum'
+key: '6abc3520dabc238329aff930ba20cb293'
+uploadPath: 'uploads'

@@ -1,0 +1,14 @@
+{% include 'header.html' %}
+<h1>Signing in</h1>
+{% if result.status != -1 %}
+    <div id="reg-status">
+        {{ result.status }}
+    </div>
+{% endif %}
+<form method="post" id="signin">
+    <input type="text" class="field" placeholder="Login" name="login" required /><br />
+    <input type="password" class="field" placeholder="Password" name="password" required /><br />
+    <input type="submit" value="Enter" class="button" id="signin-action"/>
+</form>
+<a href="register">Don't have an account? Register one</a>
+{% include 'footer.html' %}
